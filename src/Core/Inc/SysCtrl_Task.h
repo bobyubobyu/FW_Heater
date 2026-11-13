@@ -1,0 +1,109 @@
+/*
+ * Sys_Ctrl_Task.h
+ *
+ *  Created on: Nov 25, 2025
+ *      Author: Bob Yu
+ */
+
+#ifndef INC_SYSCTRL_TASK_H_
+#define INC_SYSCTRL_TASK_H_
+
+enum
+{
+		TASK_STATUS_IDLE,
+		TASK_STATUS_WORK,
+
+		NUM_OF_TASK_STATUS
+};
+
+enum
+{
+		TASK_MODE_IDLE,
+
+		TASK_MODE_M1_GOTO_END,
+		TASK_MODE_M1_GOTO_HOME,
+		TASK_MODE_M1_GOTO_END_STEPS,
+		TASK_MODE_M1_GOTO_HOME_STEPS,
+
+		TASK_MODE_M2_GOTO_END,
+		TASK_MODE_M2_GOTO_HOME,
+		TASK_MODE_M2_GOTO_END_STEPS,
+		TASK_MODE_M2_GOTO_HOME_STEPS,
+
+		TASK_MODE_M3_GOTO_END,
+		TASK_MODE_M3_GOTO_HOME,
+		TASK_MODE_M3_GOTO_END_STEPS,
+		TASK_MODE_M3_GOTO_HOME_STEPS,
+
+		TASK_MODE_M4_GOTO_END,
+		TASK_MODE_M4_GOTO_HOME,
+		TASK_MODE_M4_GOTO_END_STEPS,
+		TASK_MODE_M4_GOTO_HOME_STEPS,
+
+		TASK_MODE_M1_M2_GOTO_HOME,
+		TASK_MODE_M1_M2_GOTO_MEASURE,
+		TASK_MODE_START_MEASURE,
+		TASK_MODE_START_MEASURE_SPD01,
+		TASK_MODE_START_MEASURE_SPD02,
+		NUM_OF_TASK_MODE
+};
+
+enum
+{
+		TASK_RUN_IDLE = 0xA0,
+		TASK_RUN_OVER,
+		TASK_RUN_GOTO,
+
+		TASK_RUN_M1_GOTO_HOME,
+		TASK_RUN_M1_GOTO_END,
+		TASK_RUN_M1_GOTO_HOME_STEPS,
+		TASK_RUN_M1_GOTO_END_STEPS,
+		TASK_RUN_M1_GOTO_HOME_STEPS_SPEED,
+		TASK_RUN_M1_GOTO_END_STEPS_SPEED,
+		TASK_WAIT_M1_STOP,
+
+		TASK_RUN_M2_GOTO_HOME,
+		TASK_RUN_M2_GOTO_END,
+		TASK_RUN_M2_GOTO_HOME_STEPS,
+		TASK_RUN_M2_GOTO_END_STEPS,
+		TASK_WAIT_M2_STOP,
+
+		TASK_RUN_M3_GOTO_HOME,
+		TASK_RUN_M3_GOTO_END,
+		TASK_RUN_M3_GOTO_HOME_STEPS,
+		TASK_RUN_M3_GOTO_END_STEPS,
+		TASK_WAIT_M3_STOP,
+
+		TASK_RUN_M4_GOTO_HOME,
+		TASK_RUN_M4_GOTO_END,
+		TASK_RUN_M4_GOTO_HOME_STEPS,
+		TASK_RUN_M4_GOTO_END_STEPS,
+		TASK_WAIT_M4_STOP,
+
+		TASK_SOUND,
+
+		TASK_RUN_DELAY,
+		TASK_WAIT_DELAY,
+
+		TASK_VALUE = 0xF0,
+
+		NUM_OF_TASK_CMD
+};
+
+//===============================================================
+uint8_t	CtrlTask_isWork();
+uint8_t	CtrlTask_Status();
+
+void CtrlTask_Stop(uint8_t Mode);
+void CtrlTask_Start(uint8_t Mode, uint8_t Repeat);
+
+void CtrlTask_Process();
+
+void CtrlTask_Initial();
+void CtrlTask_Incrase_Delay(uint32_t var_add);
+void CtrlTask_Fill_Parameter(uint8_t index,uint8_t val);
+//===============================================================
+
+
+
+#endif /* INC_SYSCTRL_TASK_H_ */
